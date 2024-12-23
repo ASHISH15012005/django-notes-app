@@ -1,6 +1,6 @@
 FROM python:3.9
 
-# Set working directory
+# Set the working directory inside the container
 WORKDIR /app/backend
 
 # Copy requirements.txt and install dependencies
@@ -13,11 +13,12 @@ RUN apt-get update \
 RUN pip install mysqlclient
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the application code
+# Copy the entire application code
 COPY . /app/backend
 
-# Expose the port for the application
+# Expose the application's port
 EXPOSE 8000
 
-# Run database migrations and start the Django application
-CMD ["sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
+# Define entrypoint and command
+ENTRYPOINT ["python", "manage.py"]
+CMD ["runserver", "0.0.0.0:8000"]
