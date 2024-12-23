@@ -19,6 +19,5 @@ COPY . /app/backend
 # Expose the application's port
 EXPOSE 8000
 
-# Define entrypoint and command
-ENTRYPOINT ["python", "manage.py"]
-CMD ["runserver", "0.0.0.0:8000"]
+# Command to run the Django application
+CMD ["python", "/app/backend/manage.py", "runserver", "0.0.0.0:8000"]
